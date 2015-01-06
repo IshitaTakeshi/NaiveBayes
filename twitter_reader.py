@@ -4,7 +4,7 @@ import codecs
 import twitter
 
 
-#Sign up as a twitter developper here.
+#set your key here
 #https://dev.twitter.com/
 api = twitter.Api(
     consumer_key='consumer key',

@@ -9,7 +9,7 @@ except ImportError:
 from bs4 import BeautifulSoup
 
 
-#You need to get an app id here.
+#set your app id here
 #http://developer.yahoo.co.jp/webapi/jlp/ma/v1/parse.html
 appid = 'your app id'
 pageurl = "http://jlp.yahooapis.jp/MAService/V1/parse"

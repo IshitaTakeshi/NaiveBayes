@@ -57,7 +57,7 @@ class NaiveBayes():
         return score
 
     def predict(self, doc):
-        #arg max_cat log(P(cat|doc))
+        #arg max log(P(cat|doc))
         best_guessted_category = None
         max_probability = -float('inf')
         words = splitter.split(doc)

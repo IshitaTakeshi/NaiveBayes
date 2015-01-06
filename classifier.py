@@ -43,7 +43,7 @@ class Classifier(object):
 if(__name__ == '__main__'):
     classifier = Classifier()
 
-    #you can load classifier settings and params if the file exists
+    #load classifier settings and params
     #classifier.load('classifier.json')
 
     classifier.learn_from_tweets(
