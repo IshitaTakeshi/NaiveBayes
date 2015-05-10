@@ -61,8 +61,6 @@ $pip3 install twitter
 4. 中二病なツイートをしているアカウントをいくつか探し、そのIDをsettings.cfgのtrue_accountsに設定します。
 5. 中二病でないツイートのアカウントをfalse_target_nameに設定します。
 
-以上で設定は終了です。
-
 ```
 [YAHOO]
 # YahooのアプリケーションID
@@ -83,3 +81,5 @@ false_target_name = '中二病ではない'
 # 普通のアカウントのID (自分のアカウントなど自由に設定してください)
 false_accounts = ['false_account_id1','false_account_id2']
 ```
+
+以上で設定は終了です。
