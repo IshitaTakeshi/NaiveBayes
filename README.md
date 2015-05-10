@@ -46,7 +46,7 @@ $sudo python3 setup.py install
 
 PythonのTwitter APIをインストールします。
 ```
-$pip3 install twitter
+$sudo pip3 install twitter
 ```
 
 ### 設定ファイルの記述
