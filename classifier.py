@@ -1,17 +1,14 @@
+# -*- coding: utf-8 -*-
+
+
 import sys
 import json
 import time
 
+import numpy as np
+
 from naivebayes import NaiveBayes
-import twitter_reader
-
-
-def get_tweets(accounts):
-    """Get recent 200 tweets from each account"""
-    tweets = []
-    for account in accounts:
-        tweets += twitter_reader.get_tweets(account)
-    return tweets
+from twitter_reader import get_tweets
 
 
 class Classifier(object):
@@ -19,10 +16,18 @@ class Classifier(object):
         self.classifier = NaiveBayes()
 
     def learn_from_tweets(self, user_ids, category):
-        print("Training...")
         tweets = get_tweets(user_ids)
-        for i, tweet in enumerate(tweets):
-            self.classifier.fit(tweet, category)
+        categories = [category] * len(tweets)
+        self.classifier.fit(tweets, categories)
+        print("Training...")
+
+    def predict_user_input(self):
+        """Read user input until 'exit' is entered"""
+        sentence = input("input =>")
+        while(sentence != 'exit'):
+            category = self.classifier.predict_(sentence)
+            print("category: {}".format(category))
+            sentence = input("input =>")
 
     def save(self, filename):
         self.classifier.dump_json(filename)
@@ -30,38 +35,29 @@ class Classifier(object):
     def load(self, filename):
         self.classifier.load_json(filename)
 
-    def predict_user_input(self):
-        """Read user input until 'exit' is entered"""
-        text = raw_input("input =>")
-        while(text != 'exit'):
-            text = text.decode('utf-8')
-            category = self.classifier.predict(text)
-            print("category: {}".format(category))
-            text = raw_input("input =>")
-
 
 if(__name__ == '__main__'):
     classifier = Classifier()
 
-    #load classifier settings and params
-    #classifier.load('classifier.json')
+    if(len(sys.argv) >= 2):
+        # load classifier settings and params
+        classifier.load(sys.argv[1])
+        classifier.predict_user_input()
+        exit(0)
 
+    from config import Config
+
+    config = Config('settings.cfg', 'TWITTER')
     classifier.learn_from_tweets(
-        [
-            'tsundere account id 1',
-            'tsundere account id 2',
-        ],
-        'tsundere'
+        config.true_accounts,
+        config.true_target_name
     )
 
     classifier.learn_from_tweets(
-        [
-            'normal account id 1',
-            'normal account id 2',
-        ],
-        'not_tsundere'
+        config.false_accounts,
+        config.false_target_name
     )
 
-    #save classifier parameters
-    classifier.save('classifier.json')
+    # save the classifier parameters
+    classifier.save('result.json')
     classifier.predict_user_input()

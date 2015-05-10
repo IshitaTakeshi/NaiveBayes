@@ -3,17 +3,30 @@ import codecs
 
 import twitter
 
+from config import Config
 
-#set your key here
-#https://dev.twitter.com/
-api = twitter.Api(
-    consumer_key='consumer key',
-    consumer_secret='consumer secret',
-    access_token_key='token key',
-    access_token_secret='token secret'
+config = Config('settings.cfg', 'TWITTER')
+
+
+auth = twitter.OAuth(
+    consumer_key=config.consumer_key,
+    consumer_secret=config.consumer_secret,
+    token=config.token,
+    token_secret=config.token_secret
 )
 
+api = twitter.Twitter(auth=auth)
 
-def get_tweets(screen_name):
-    statuses = api.GetUserTimeline(screen_name=screen_name, count=200)
-    return [s.text for s in statuses]
+
+def get_tweets(accounts):
+    """Get recent 200 tweets from each account"""
+
+    def get_tweets_(screen_name):
+        statuses = api.statuses.user_timeline(screen_name=screen_name,
+                                              count=200)
+        return [s['text'] for s in statuses]
+
+    tweets = []
+    for account in accounts:
+        tweets += get_tweets_(account)
+    return tweets
