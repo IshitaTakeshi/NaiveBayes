@@ -7,6 +7,7 @@
 ## つかいかた
 
 ```
+$cd src
 $python3 classifier.py
 Training...
 Training...
