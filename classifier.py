@@ -16,6 +16,12 @@ class Classifier(object):
         self.classifier = NaiveBayes()
 
     def learn_from_tweets(self, user_ids, category):
+        """
+        Train the classifier by tweets.
+        user_ids : A list of twitter ids which their tweets are included
+        in the category.
+        category : The category of the tweets.
+        """
         tweets = get_tweets(user_ids)
         categories = [category] * len(tweets)
         self.classifier.fit(tweets, categories)
@@ -26,13 +32,15 @@ class Classifier(object):
         sentence = input("input =>")
         while(sentence != 'exit'):
             category = self.classifier.predict_(sentence)
-            print("category: {}".format(category))
+            print("{}\n".format(category))
             sentence = input("input =>")
 
     def save(self, filename):
+        """Save the model."""
         self.classifier.dump_json(filename)
 
     def load(self, filename):
+        """Load the model from a file."""
         self.classifier.load_json(filename)
 
 
@@ -59,5 +67,5 @@ if(__name__ == '__main__'):
     )
 
     # save the classifier parameters
-    classifier.save('result.json')
+    classifier.save('model.json')
     classifier.predict_user_input()
