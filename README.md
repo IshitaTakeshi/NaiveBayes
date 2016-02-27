@@ -54,7 +54,7 @@ $sudo pip3 install twitter
 2. [Yahoo デベロッパーネットワーク](https://e.developer.yahoo.co.jp/register)にアクセスして形態素解析APIを利用するためのアプリケーションIDを発行してください。
 3. 取得したAccess TokenとアプリケーションIDをsettings.cfgに書き込みます。
 4. 中二病なツイートをしているアカウントをいくつか探し、そのIDをsettings.cfgのtrue_accountsに設定します。
-5. 中二病でないツイートのアカウントをfalse_target_nameに設定します。
+5. 中二病でないツイートをしているアカウントをfalse_accountsに設定します。
 
 ```
 [YAHOO]
