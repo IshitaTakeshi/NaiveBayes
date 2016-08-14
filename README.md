@@ -36,24 +36,18 @@ $python3 classifier.py model.json
 
 ## 環境設定
 ### パッケージのインストール
-公式のBeautifulSoupは現在Python3.5に対応していません。  
-Python3.5を使用したい場合は同梱のPython3.5対応版のBeautifulSoupをインストールしてください。  
+
+Twitter APIとbeautifulsoupをインストールします。
 
 ```
-$cd beautifulsoup
-$sudo python3 setup.py install
-```
-
-PythonのTwitter APIをインストールします。
-```
-$sudo pip3 install twitter
+sudo pip3 install twitter beautifulsoup4
 ```
 
 ### 設定ファイルの記述
 1. [Twitterの開発者用ページ](https://apps.twitter.com/)にアクセスしてTwitter APIのAccess Tokenを発行してください。
 2. [Yahoo デベロッパーネットワーク](https://e.developer.yahoo.co.jp/register)にアクセスして形態素解析APIを利用するためのアプリケーションIDを発行してください。
-3. 取得したAccess TokenとアプリケーションIDをsettings.cfgに書き込みます。
-4. 中二病なツイートをしているアカウントをいくつか探し、そのIDをsettings.cfgのtrue_accountsに設定します。
+3. 取得したAccess TokenとアプリケーションIDを`src/settings.cfg`に書き込みます。
+4. 中二病なツイートをしているアカウントをいくつか探し、そのIDを`src/settings.cfg`のtrue_accountsに設定します。
 5. 中二病でないツイートをしているアカウントをfalse_accountsに設定します。
 
 ```
