@@ -40,10 +40,9 @@ class NaiveBayes(object):
 
     def calc_category_frequency(self, category):
         """
-        カテゴリが`category`である文書が入力された文書全体のうち
+        カテゴリが`category`である文書が，入力された文書全体のうち
         どれだけの割合を占めるかを計算する。
         """
-        # TODO not necessary to calc frequency at every time of calling
 
         # 学習データ内に含まれる全ての単語の数
         n_total_words = 0
@@ -71,10 +70,10 @@ class NaiveBayes(object):
         V = len(self.vocabulary)
 
         # 本来は
-        # ```probability = word_occurences/n_words_in_category```
+        # `probability = word_occurences/n_words_in_category`
         # で計算できるが、`category`内に存在しない単語が入力されると
         # `probability`が0になってしまうため、
-        # ```probability = (word_occurences + 1)/ (n_words_in_category + V)```
+        # `probability = (word_occurences + 1)/ (n_words_in_category + V)`
         # としている(ゼロ頻度問題)。
         probability = (word_occurences + 1) / (n_words_in_category + V)
         return probability
