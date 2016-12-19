@@ -37,10 +37,17 @@ $python3 classifier.py model.json
 ## 環境設定
 ### パッケージのインストール
 
-Twitter APIとbeautifulsoupをインストールします。
+Twitter APIとbeautifulsoupをインストールします。Ubuntuの場合は予め
 
 ```
-sudo pip3 install twitter beautifulsoup4 numpy
+sudo apt-get install -y libxml2-dev libxslt1-dev
+```
+
+としておいてください。
+依存ライブラリをインストールします。
+
+```
+sudo pip3 install twitter beautifulsoup4 lxml numpy
 ```
 
 ### 設定ファイルの記述
