@@ -40,7 +40,7 @@ $python3 classifier.py model.json
 Twitter APIとbeautifulsoupをインストールします。
 
 ```
-sudo pip3 install twitter beautifulsoup4
+sudo pip3 install twitter beautifulsoup4 numpy
 ```
 
 ### 設定ファイルの記述
